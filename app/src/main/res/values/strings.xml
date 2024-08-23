@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name" translatable="false">TaskatCo</string>
+    <string name="title_activity_main2" translatable="false">MainActivity2</string>
+    <string name="check_app_trick">Check app trick</string>
+    <string name="share_app">Share app</string>
+    <string name="theme">Theme</string>
+    <string name="completed_for_today">Completed for today</string>
+    <string name="start_time_helper_msg">start time</string>
+    <string name="end_time_helper_msg">end time</string>
+    <string name="add_edit_task_title">Add/Edit Task</string>
+    <string name="enter_title_hint">Enter title</string>
+    <string name="enter_description_hint">Enter description</string>
+    <string name="empty_title_msg">The title of task can\'t be empty</string>
+    <string name="empty_decription_msg">The description of task can\'t be empty</string>
+    <string name="save_btn">Save</string>
+    <string name="high_priority">High</string>
+    <string name="normal_priority">Normal</string>
+    <string name="low_priority">Low</string>
+    <string name="priority">Priority</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="done_btn">Done</string>
+    <string name="undo">Undo</string>
+    <string name="deleted_task_msg">task has been deleted</string>
+    <string name="notification_msg">has been started, Don\'t give up you can do it</string>
+    <string name="invalid_date_msg">The date you have been selected is invalid</string>
+    <string name="current_time_msg">"current time can't be used for task,this time running now lol😜"</string>
+    <string name="current_time_start_time_msg">Start time can\'t be the current time</string>
+    <string name="current_time_end_time_msg">End time can\'t be the current time</string>
+    <string name="start_time_for_today_out_msg">The start time you have been selected for today is out</string>
+    <string name="end_time_for_today_out_msg">The end time you have been selected for today is out</string>
+    <string name="time_for_today_out_msg">The time you have been selected for today is out</string>
+    <string name="start_time_after_end_time_msg">Start time can\'t be after end time</string>
+    <string name="end_time_before_start_time_msg">End time can\'t be before start time</string>
+    <string name="end_time_as_start_time_msg">End time can\'t be same as start time</string>
+    <string name="start_time_as_end_time_msg">Start time can\'t be same as end time</string>
+    <string name="start_time_between_other_time_msg">Start time can\'t be between start time and end time for other task</string>
+    <string name="end_time_between_other_time_msg">End time can\'t be between start time and end time for other task</string>
+    <string name="task_same_start_time_for_date_msg">There\'s a task with the same start time for this date, please change start time for this task</string>
+    <string name="task_same_end_time_for_date_msg">There\'s a task with the same end time for this date, please change end time for this task</string>
+    <string name="high_priority_for_same_date_msg">There\'s a task with "high priority" for this date, you can have only one task with "high priority" every day until finish previous high priority task for that day then you can put it again</string>
+    <string name="al_tasks">Tasks</string>
+    <string name="today">Today</string>
+    <string name="time">Time</string>
+    <string name="date">Date</string>
+    <string name="_default">Default</string>
+    <string name="descending">Descending</string>
+    <string name="ascending">ascending</string>
+    <string name="pend_high_priority">Pend High Priority</string>
+    <string name="lang_menu">Language</string>
+    <string name="tasks">Tasks</string>
+    <string name="done">Done</string>
+    <string name="todo">To Do</string>
+    <string name="min">min</string>
+    <string name="mins">min</string>
+    <string name="hour">hour</string>
+    <string name="hours">hours</string>
+    <string name="hrs">hrs</string>
+    <string name="permission_msg_title">Alarm and Reminder permission is needed</string>
+    <string name="permission_msg_content">The app needs Alarm and Reminder permission to remind you when the task enter it\'s time</string>
+
+
+    <string name="numberRes">%d</string>
+    <string name="slash">/</string>
+
+    <string name="en" translatable="false">English</string>
+    <string name="ar" translatable="false">العربية</string>
+    <string name="system">System</string>
+    <string name="language">English</string>
+</resources>

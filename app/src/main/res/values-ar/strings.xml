@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="check_app_trick">تفقد أسرار التطبيق</string>
+    <string name="share_app">شارك التطبيق</string>
+    <string name="theme">الثيم</string>
+    <string name="completed_for_today">المكتملة لليوم</string>
+    <string name="start_time_helper_msg">وقت البداية</string>
+    <string name="end_time_helper_msg">وقت النهاية</string>
+    <string name="add_edit_task_title">إضافة\\تعديل مهمة</string>
+    <string name="enter_title_hint">أدخل عنوان</string>
+    <string name="enter_description_hint">أدخل وصف</string>
+    <string name="empty_title_msg">عنوان المهمة لا يمكن أن يكون فارغاً</string>
+    <string name="empty_decription_msg">وصف المهمة لا يمكن أن يكون فارغا</string>
+    <string name="save_btn">حفظ</string>
+    <string name="high_priority">مرتفعة</string>
+    <string name="normal_priority">عادية</string>
+    <string name="low_priority">منخفضة</string>
+    <string name="priority">الأولوية</string>
+    <string name="cancel_btn">إلغاء</string>
+    <string name="done_btn">تم</string>
+    <string name="undo">تراجع</string>
+    <string name="deleted_task_msg">تم حذفها</string>
+    <string name="notification_msg">قد بدأت, يمكنك فعلها لا تيأس</string>
+    <string name="invalid_date_msg">التاريخ الذي قمت باختياره غير صالح</string>
+    <string name="current_time_msg">الوقت الحال لا يمكن إستخدامه للمهمة، هذا الوقت جاري الان يا رجل😜</string>
+    <string name="current_time_start_time_msg">الوقت الحالي لا يمكن ان يكون وقت البداية</string>
+    <string name="current_time_end_time_msg">الوقت الحالي لا يمكن ان يكون وقت النهاية</string>
+    <string name="start_time_for_today_out_msg">وقت البداية الذي قمت باختياره لهذا اليوم قد مضى بالفعل</string>
+    <string name="end_time_for_today_out_msg">وقت النهاية الذي قمت باختياره لهذا اليوم قد مضى بالفعل</string>
+    <string name="time_for_today_out_msg">الوقت الذي قمت باختياره لهذا اليوم قد مضى بالفعل</string>
+    <string name="start_time_after_end_time_msg">وقت البداية لا يمكن أن يكون بعد وقت النهاية</string>
+    <string name="end_time_before_start_time_msg">وقت النهاية لا يمكن أن يكون قبل وقت البداية</string>
+    <string name="end_time_as_start_time_msg">وقت النهاية لا يمكن أن يكون نفسه وقت البداية</string>
+    <string name="start_time_as_end_time_msg">وقت البداية لا يمكن أن يكون نفسه وقت النهاية</string>
+    <string name="start_time_between_other_time_msg">وقت البداية لا يمكن أن يكون بين وقت البداية و وقت النهاية لمهمة أخرى</string>
+    <string name="end_time_between_other_time_msg">وقت النهاية لا يمكن أن يكون بين وقت البداية و وقت النهاية لمهمة أخرى</string>
+    <string name="task_same_start_time_for_date_msg">هناك مهمة بنفس وقت البداية لهذا التاريخ، لو سمحت قم بتغير الوقت لهذه المهمة</string>
+    <string name="task_same_end_time_for_date_msg">هناك مهمة بنفس وقت النهاية لهذا التاريخ، لو سمحت قم بتغير الوقت لهذه المهمة</string>
+    <string name="high_priority_for_same_date_msg">هناك مهمة ذات أولوية مرتفعة لهذا التاريخ، يمكنك امتلاك مهمة واحدة ذات أولوية مرتفعة كل يوم حتى انتهاء المهمة السابقة ذات الأولوية المرتفعة ثم تضغها مجدداً لمهمة أخرى</string>
+    <string name="al_tasks">المهام</string>
+    <string name="today">اليوم</string>
+    <string name="time">الوقت</string>
+    <string name="date">التاريخ</string>
+    <string name="_default">الإفتراضي</string>
+    <string name="descending">تنازلياً</string>
+    <string name="ascending">تصاعدياً</string>
+    <string name="pend_high_priority">تثبيت الأولوية المرتفعة</string>
+    <string name="lang_menu">اللغة</string>
+    <string name="tasks">مهام</string>
+    <string name="done">تمت</string>
+    <string name="todo">يجب فعلها</string>
+    <string name="min">دقيقة</string>
+    <string name="mins">دقائق</string>
+    <string name="hour">ساعة</string>
+    <string name="hours">ساعات</string>
+    <string name="hrs">س</string>
+    <string name="permission_msg_title">مطلوب أذن المنبهات والتذكيرات</string>
+    <string name="permission_msg_content">التطبيق يحتاج أذن المنبهات والتذكيرات لتذكيرك عندما تدخل المهمة في وقتها</string>
+
+    <string name="numberRes">%d</string>
+    <string name="slash"> \ \\\ \</string>
+
+
+    <string name="system">النظام</string>
+    <string name="language">العربية</string>
+
+
+</resources>
