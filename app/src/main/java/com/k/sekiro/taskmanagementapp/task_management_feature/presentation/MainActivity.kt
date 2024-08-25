@@ -164,7 +164,9 @@ class MainActivity : AppCompatActivity() {
                                 ModalDrawerSheet {
                                     AppDrawer(
                                         dataStore = dataStore,
-                                        coroutineScope = coroutineScope
+                                        coroutineScope = coroutineScope,
+                                        navController = navController,
+                                        drawerState = drawerState
                                     )
                                 }
                             },
@@ -358,6 +360,10 @@ class MainActivity : AppCompatActivity() {
                                             calenderEndTime = addEditViewModel.calenderEndTime.value,
                                             onChangeSnackActionState = {isSnackBarActionVisible = false}
                                         )
+                                    }
+
+                                    composable(Screens.Instructions.route){
+                                        InstructionsBeforeUseScreen()
                                     }
                                 }
 

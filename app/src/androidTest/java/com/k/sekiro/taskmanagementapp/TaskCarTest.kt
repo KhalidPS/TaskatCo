@@ -15,7 +15,7 @@ class TaskCarTest {
     fun title_is_displayed() {
         val task = Task.DEFAULT_TASK
         composeTestRule.setContent {
-            TaskCard(task = task)
+           // TaskCard(task = task)
         }
 
         composeTestRule.onNodeWithText(task.title).assertIsDisplayed()

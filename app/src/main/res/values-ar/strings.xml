@@ -2,6 +2,8 @@
 <resources>
     <string name="check_app_trick">تفقد أسرار التطبيق</string>
     <string name="share_app">شارك التطبيق</string>
+    <string name="instructions_before_use">إرشادات قبل الاستخدام</string>
+    <string name="share_download_link">شارك رابط التحميل</string>
     <string name="theme">الثيم</string>
     <string name="completed_for_today">المكتملة لليوم</string>
     <string name="start_time_helper_msg">وقت البداية</string>

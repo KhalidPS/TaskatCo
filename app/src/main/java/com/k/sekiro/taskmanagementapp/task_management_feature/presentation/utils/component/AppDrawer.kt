@@ -1,62 +1,48 @@
 package com.k.sekiro.taskmanagementapp.task_management_feature.presentation.utils.component
 
+import android.content.*
+import android.content.pm.*
+import android.net.Uri
 import android.util.*
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
+import android.widget.Toast
+import androidx.appcompat.app.*
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.*
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.os.LocaleListCompat
-import androidx.datastore.core.*
-import androidx.datastore.preferences.core.*
-import com.k.sekiro.taskmanagementapp.R
-import kotlinx.coroutines.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.*
+import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.platform.*
+import androidx.compose.ui.res.*
+import androidx.compose.ui.text.font.*
+import androidx.compose.ui.text.style.*
+import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
+import androidx.core.content.*
+import androidx.core.net.*
+import androidx.core.os.*
+import androidx.datastore.core.*
+import androidx.datastore.core.IOException
+import androidx.datastore.preferences.core.*
+import androidx.navigation.*
+import com.k.sekiro.taskmanagementapp.*
+import com.k.sekiro.taskmanagementapp.R
+import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.utils.*
 import com.k.sekiro.taskmanagementapp.ui.theme.*
-import kotlin.math.exp
+import kotlinx.coroutines.*
+import java.io.*
 
 
 @Composable
 fun AppDrawer(
     dataStore: DataStore<Preferences>,
-    coroutineScope: CoroutineScope
+    coroutineScope: CoroutineScope,
+    navController: NavHostController,
+    drawerState: DrawerState
 ) {
 
     Column (
@@ -70,7 +56,12 @@ fun AppDrawer(
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
-        DrawerContent(coroutineScope = coroutineScope,dataStore = dataStore)
+        DrawerContent(
+            coroutineScope = coroutineScope,
+            dataStore = dataStore,
+            navController =  navController,
+            drawerState = drawerState
+        )
 
         DrawerFooter(
             modifier = Modifier.weight(1f),
@@ -117,9 +108,12 @@ private fun DrawerHeader() {
 private fun DrawerContent(
     modifier: Modifier = Modifier,
     dataStore: DataStore<Preferences>,
-    coroutineScope: CoroutineScope = rememberCoroutineScope()
+    navController: NavHostController,
+    drawerState: DrawerState,
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
 ) {
 
+val context = LocalContext.current
 
     Column {
         Row(
@@ -127,7 +121,12 @@ private fun DrawerContent(
             modifier = modifier
                 .fillMaxWidth()
                 .clickable {
-                    // TODO() //
+                    coroutineScope.launch {
+                        drawerState.close()
+                    }
+                    navController.navigate(Screens.Instructions.route){
+                        launchSingleTop = true
+                    }
                 }
                 .padding(vertical = 8.dp)
         ) {
@@ -137,7 +136,7 @@ private fun DrawerContent(
                 modifier = Modifier.size(MaterialTheme.dimens.appDrawerDimens.iconsSize)
             )
             Text(
-                text = stringResource(id = R.string.check_app_trick),
+                text = stringResource(id = R.string.instructions_before_use),
                 modifier = Modifier.padding(start = MaterialTheme.dimens.appDrawerDimens.iconsTextStartPadding)
             )
         }
@@ -150,7 +149,11 @@ private fun DrawerContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable {
-                    //TODO()//
+                    coroutineScope.launch {
+                        launch { drawerState.close() }
+                        launch { shareAppAsAPK(context) }
+
+                    }
                 }
                 .padding(vertical = 8.dp)
         ) {
@@ -161,6 +164,32 @@ private fun DrawerContent(
             )
             Text(
                 text = stringResource(id = R.string.share_app),
+                modifier = Modifier.padding(start = MaterialTheme.dimens.appDrawerDimens.iconsTextStartPadding)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    coroutineScope.launch {
+                        drawerState.close()
+                    }
+                    shareAppAsLink(context)
+                }
+                .padding(vertical = 8.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.Link,
+                contentDescription = null,
+                modifier = Modifier.size(MaterialTheme.dimens.appDrawerDimens.iconsSize)
+            )
+            Text(
+                text = stringResource(id = R.string.share_download_link),
                 modifier = Modifier.padding(start = MaterialTheme.dimens.appDrawerDimens.iconsTextStartPadding)
             )
         }
@@ -180,7 +209,7 @@ private fun DrawerFooter(
     coroutineScope: CoroutineScope
 ) {
 
-    var checked =  AppThemeSettings.isDarkTheme
+    val checked =  AppThemeSettings.isDarkTheme
 
     
     Spacer(modifier = modifier)
@@ -354,4 +383,81 @@ fun ExposedDropdownMenuDefaults.CustomTrailingIcon(
         null,
         Modifier.size(size).rotate(if (expanded) 180f else 0f),
     )
+}
+
+
+private suspend fun shareAppAsAPK(context: Context) {
+    val app: ApplicationInfo = context.applicationInfo
+    val originalApk = app.publicSourceDir
+    val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        Toast.makeText(context,throwable.message,Toast.LENGTH_SHORT).show()
+    }
+
+    withContext(Dispatchers.IO + coroutineExceptionHandler){
+        try {
+            //Make new directory in new location
+            var tempFile: File = File(context.getExternalFilesDir(null).toString() + "/ExtractedApk")
+            //If directory doesn't exists create new
+            if (!tempFile.isDirectory) if (!tempFile.mkdirs()) return@withContext
+            //rename apk file to app name
+            tempFile = File(tempFile.path + "/" + context.getString(app.labelRes).replace(" ", "") + ".apk")
+            //If file doesn't exists create new
+            if (!tempFile.exists()) {
+                if (!tempFile.createNewFile()) {
+                    return@withContext
+                }
+            }
+            //Copy file to new location
+            val inp: InputStream = FileInputStream(originalApk)
+            val out: OutputStream = FileOutputStream(tempFile)
+            val buf = ByteArray(1024)
+            var len: Int
+            while (inp.read(buf).also { len = it } > 0) {
+                out.write(buf, 0, len)
+            }
+            inp.close()
+            out.close()
+            withContext(Dispatchers.Main){
+                //Open share dialog
+                val intent = Intent(Intent.ACTION_SEND)
+//MIME type for apk, might not work in bluetooth sahre as it doesn't support apk MIME type
+
+                intent.type = "application/vnd.android.package-archive"
+                intent.putExtra(
+                    Intent.EXTRA_STREAM, FileProvider.getUriForFile(
+                        context, BuildConfig.APPLICATION_ID + ".provider", File(tempFile.path)
+                    )
+                )
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                context.startActivity(intent)
+            }
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+}
+
+
+private fun shareAppAsLink(context: Context){
+    val url = "https://drive.google.com/file/d/1iQwnFCyUSVS58yr0XczHX4cCciVwpsAm/view?usp=drive_link"
+
+   val sendIntent =  Intent(Intent.ACTION_SEND).apply {
+        putExtra(Intent.EXTRA_TEXT,url)
+       type = "text/plain"
+    }
+
+    val openIntent = Intent(Intent.ACTION_VIEW).apply {
+        flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        data = Uri.parse(url)
+    }
+
+    val shareIntent = Intent.createChooser(sendIntent,"share link with").apply {
+        putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(openIntent))
+    }
+
+    context.startActivity(shareIntent)
 }

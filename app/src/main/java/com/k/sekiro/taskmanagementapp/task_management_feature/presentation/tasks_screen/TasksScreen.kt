@@ -154,112 +154,119 @@ private fun PortraitTasksScreen(
 
         Spacer(modifier = Modifier.height(MaterialTheme.dimens.homeScreenDimens.spacerBetweenFilterSectionAndTasksCards))
 
-        if ((state.taskOrder is TaskOrder.Today && state.taskOrder.pendedHighPriority) || state.taskOrder is TaskOrder.Default){
-            if (state.tasks.isNotEmpty() && state.tasks[0].priority == 1){
-                SwipeToDeleteContainer(
-                    item = state.tasks[0],
-                    onDelete = { task ->
-                        onEvent(TasksEvent.DeleteTask(task))
-
-
-                    },
-                    animationDuration = 500,
-                    modifier = Modifier.padding(horizontal = MaterialTheme.dimens.homeScreenDimens.highPriorityTaskCardPadding)
-                    ) {
-                    TaskCard(
-                        task =  state.tasks[0] ,
-                        elevation = 16.dp,
-                        borderStroke = null,
-                        showPinnedIcon = true,
-                        modifier = Modifier.zIndex(1f),
-                        alarmService = alarmService,
-                        dataStore = dataStore,
-                        onCheckedChange = {onEvent(TasksEvent.Checked(it))},
-                        scope = scope
-                    ){
-                        navController.navigate(Screens.AddEdit.route + "?taskId=${if (state.tasks.isNotEmpty()) state.tasks[0].id else return@TaskCard}"){
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-
-                    }
-                }
-            }
-
-            LazyColumn(
-                contentPadding = PaddingValues(
-                    start = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues,
-                    end = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues,
-                    top = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues
-                ),
-            ) {
-                itemsIndexed(
-                    items = state.tasks,
-                    key = {_, item ->
-                        item.id
-                    }
-                ) { index , item ->
-                    if (item.priority != 1){
-
-                        SwipeToDeleteContainer(
-                            item = item,
-                            onDelete = { task ->
-                                onEvent(TasksEvent.DeleteTask(item))
-
-
-                            },
-                            animationDuration = 500,
-                            modifier = Modifier.animateItemPlacement(
-                                spring(
-                                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                                    stiffness = 50f,
-                                )
-                            )
-                        ) {
-
-                            TaskCard(
-                                task = item,
-                                alarmService = alarmService,
-                                dataStore = dataStore,
-                                scope = scope,
-                                onCheckedChange = {onEvent(TasksEvent.Checked(it))},
-                            ){
-                                navController.navigate(Screens.AddEdit.route + "?taskId=${item.id}"){
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                                Log.e("ks","the id is :${item.id}")
-
-                            }
-
-                        }
-                        Spacer(modifier = Modifier.height(MaterialTheme.dimens.homeScreenDimens.spacerBetweenListItems))
-                    }
-
-                }
-            }
-
-
-
+        if (state.tasks.isEmpty()){
+            Image(
+                painter = painterResource(id = R.drawable.no_tasks),
+                contentDescription = "no task image",
+                modifier = Modifier.fillMaxHeight()
+            )
         }else{
-            LazyColumn(
-                contentPadding = PaddingValues(
-                    start = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues,
-                    end = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues
-                )
-            ) {
-                items(
-                    items = state.tasks,
-                    key = {
-                        it.id
+            if ((state.taskOrder is TaskOrder.Today && state.taskOrder.pendedHighPriority) || state.taskOrder is TaskOrder.Default){
+                if (state.tasks.isNotEmpty() && state.tasks[0].priority == 1){
+                    SwipeToDeleteContainer(
+                        item = state.tasks[0],
+                        onDelete = { task ->
+                            onEvent(TasksEvent.DeleteTask(task))
+
+
+                        },
+                        animationDuration = 500,
+                        modifier = Modifier.padding(horizontal = MaterialTheme.dimens.homeScreenDimens.highPriorityTaskCardPadding)
+                    ) {
+                        TaskCard(
+                            task =  state.tasks[0] ,
+                            elevation = 16.dp,
+                            borderStroke = null,
+                            showPinnedIcon = true,
+                            modifier = Modifier.zIndex(1f),
+                            alarmService = alarmService,
+                            dataStore = dataStore,
+                            onCheckedChange = {onEvent(TasksEvent.Checked(it))},
+                            scope = scope
+                        ){
+                            navController.navigate(Screens.AddEdit.route + "?taskId=${if (state.tasks.isNotEmpty()) state.tasks[0].id else return@TaskCard}"){
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+
+                        }
                     }
-                ) { item ->
+                }
+
+                LazyColumn(
+                    contentPadding = PaddingValues(
+                        start = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues,
+                        end = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues,
+                        top = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues
+                    ),
+                ) {
+                    itemsIndexed(
+                        items = state.tasks,
+                        key = {_, item ->
+                            item.id
+                        }
+                    ) { index , item ->
+                        if (item.priority != 1){
+
+                            SwipeToDeleteContainer(
+                                item = item,
+                                onDelete = { task ->
+                                    onEvent(TasksEvent.DeleteTask(item))
+
+
+                                },
+                                animationDuration = 500,
+                                modifier = Modifier.animateItemPlacement(
+                                    spring(
+                                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                                        stiffness = 50f,
+                                    )
+                                )
+                            ) {
+
+                                TaskCard(
+                                    task = item,
+                                    alarmService = alarmService,
+                                    dataStore = dataStore,
+                                    scope = scope,
+                                    onCheckedChange = {onEvent(TasksEvent.Checked(it))},
+                                ){
+                                    navController.navigate(Screens.AddEdit.route + "?taskId=${item.id}"){
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            saveState = true
+                                        }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                    Log.e("ks","the id is :${item.id}")
+
+                                }
+
+                            }
+                            Spacer(modifier = Modifier.height(MaterialTheme.dimens.homeScreenDimens.spacerBetweenListItems))
+                        }
+
+                    }
+                }
+
+
+
+            }else{
+                LazyColumn(
+                    contentPadding = PaddingValues(
+                        start = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues,
+                        end = MaterialTheme.dimens.homeScreenDimens.tasksLazyColumnPaddingValues
+                    )
+                ) {
+                    items(
+                        items = state.tasks,
+                        key = {
+                            it.id
+                        }
+                    ) { item ->
                         Log.e("ks","id delted " +item.id.toString())
                         SwipeToDeleteContainer(
                             item = item,
@@ -275,7 +282,7 @@ private fun PortraitTasksScreen(
                                     stiffness = 50f,
                                 )
                             )
-                            ) {
+                        ) {
 
 
                             TaskCard(
@@ -301,9 +308,12 @@ private fun PortraitTasksScreen(
                         Spacer(modifier = Modifier.height(MaterialTheme.dimens.homeScreenDimens.spacerBetweenListItems))
 
 
+                    }
                 }
             }
         }
+
+
 
 
 

@@ -4,4 +4,5 @@ sealed class Screens (val route:String){
     object Tasks: Screens("Home")
     object Analysis: Screens("Chart")
     object AddEdit:Screens("AddEdit")
+    object Instructions:Screens("Instructions")
 }
