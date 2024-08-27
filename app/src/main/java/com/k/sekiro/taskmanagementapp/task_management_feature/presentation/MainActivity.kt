@@ -35,6 +35,7 @@ import com.k.sekiro.taskmanagementapp.AlarmService
 import com.k.sekiro.taskmanagementapp.R
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.add_edit_task_screen.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.analysis_screen.*
+import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.instructions_before_use_screen.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.request_permission_screen.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.tasks_screen.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.utils.*
