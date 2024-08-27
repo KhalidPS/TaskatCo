@@ -1,7 +1,6 @@
 package com.k.sekiro.taskmanagementapp.task_management_feature.presentation.tasks_screen
 
 import android.content.*
-import android.content.res.*
 import android.util.*
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
@@ -13,7 +12,6 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
-import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.datastore.core.*
@@ -26,7 +24,6 @@ import com.k.sekiro.taskmanagementapp.R
 import com.k.sekiro.taskmanagementapp.task_management_feature.domain.utils.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.tasks_screen.component.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.utils.*
-import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.utils.component.*
 import com.k.sekiro.taskmanagementapp.ui.theme.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*

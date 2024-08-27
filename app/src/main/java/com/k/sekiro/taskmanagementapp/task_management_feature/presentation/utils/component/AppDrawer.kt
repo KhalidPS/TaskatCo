@@ -2,9 +2,9 @@ package com.k.sekiro.taskmanagementapp.task_management_feature.presentation.util
 
 import android.content.*
 import android.content.pm.*
-import android.net.Uri
+import android.net.*
 import android.util.*
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -23,7 +23,6 @@ import androidx.compose.ui.text.style.*
 import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import androidx.core.content.*
-import androidx.core.net.*
 import androidx.core.os.*
 import androidx.datastore.core.*
 import androidx.datastore.core.IOException
@@ -46,7 +45,7 @@ fun AppDrawer(
 ) {
 
     Column (
-        Modifier.padding(16.dp)
+        Modifier.padding(16.dp).fillMaxWidth(MaterialTheme.dimens.appDrawerDimens.drawerWidth)
     ){
         DrawerHeader()
 
@@ -455,7 +454,10 @@ private fun shareAppAsLink(context: Context){
         data = Uri.parse(url)
     }
 
-    val shareIntent = Intent.createChooser(sendIntent,"share link with").apply {
+    val shareIntent = Intent.createChooser(
+        sendIntent,
+        ContextCompat.getContextForLanguage(context).getString(R.string.share_link_via)
+    ).apply {
         putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(openIntent))
     }
 

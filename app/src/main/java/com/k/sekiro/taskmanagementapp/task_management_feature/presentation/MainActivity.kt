@@ -1,18 +1,10 @@
 package com.k.sekiro.taskmanagementapp.task_management_feature.presentation
 
-import android.*
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
-import android.content.ServiceConnection
-import android.content.res.Configuration
+import android.content.*
 import android.os.*
 import android.util.*
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.*
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.*
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.*
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
@@ -21,20 +13,18 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
-import androidx.core.app.*
-import androidx.core.os.LocaleListCompat
 import androidx.datastore.core.*
 import androidx.datastore.preferences.core.*
 import androidx.hilt.navigation.compose.*
 import androidx.lifecycle.*
-import androidx.media3.exoplayer.*
 import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
-import com.k.sekiro.taskmanagementapp.AlarmService
+import com.k.sekiro.taskmanagementapp.*
 import com.k.sekiro.taskmanagementapp.R
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.add_edit_task_screen.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.analysis_screen.*
+import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.instructions_before_use_screen.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.request_permission_screen.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.tasks_screen.*
 import com.k.sekiro.taskmanagementapp.task_management_feature.presentation.utils.*
@@ -43,7 +33,6 @@ import com.k.sekiro.taskmanagementapp.ui.theme.*
 import dagger.hilt.android.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import java.util.Locale
 import javax.inject.*
 
 @AndroidEntryPoint

@@ -61,6 +61,19 @@
     <string name="permission_msg_content">The app needs Alarm and Reminder permission to remind you when the task enter it\'s time</string>
 
 
+    <string name="instruction_1">To delete task swipe a task from right to left.</string>
+
+    <string name="instruction_2">You can choose only one high priority for daily tasks until finish previous high priority and delete it ,
+    the idea of that to pend that task with high priority to remind the user with this task even if the user became lazy to do
+        daily tasks but this task will stuck on his face to do it and don\'t be lazy 😜😉👌.
+    </string>
+    <string name="instruction_3">You can\'t choose time that is already for other tasks in the same date,
+    also you can\'t choose time that is already between start time and end time for other tasks in the same date
+        the idea here is force the user to commit with tasks depending on specific time and focus on one task at that time.
+    </string>
+
+    <string name="share_link_via">Share link via</string>
+
     <string name="numberRes">%d</string>
     <string name="slash">/</string>
 
